@@ -18,6 +18,10 @@ namespace Task_Tracker
         public DataConnection(string cs)
         {
             constring = cs;
+
+
+
+
         }
 
         public List<Task> GetAllTasks()
@@ -26,6 +30,8 @@ namespace Task_Tracker
 
             Console.WriteLine("GetAllTask");
             List<Task> result = new List<Task>();
+
+
 
 
 
@@ -58,6 +64,16 @@ namespace Task_Tracker
         }
         public void UpdateTask(Task TaskToSave)
         {
+
+
+
+
+
+
+
+
+            #region DB Method
+            /*
             Console.WriteLine("Updating Task" + TaskToSave.ID);
             string _table = WhatTable(TaskToSave);
             string _parameters = WhatParameters(TaskToSave);
@@ -79,6 +95,8 @@ namespace Task_Tracker
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
+            */
+#endregion
         }
         
         public Task GetTask(int ID)
@@ -86,6 +104,12 @@ namespace Task_Tracker
             Console.WriteLine("Get Task: "+ ID);
             Task result = new Task("",Task.TaskType.Activity_Event,new TimeSpan(0,0,0,0), new TimeSpan(0,0,0,0));
 
+
+
+
+
+            #region DB Method
+            /*
             SqlConnection con = new SqlConnection(constring);
             con.Open();
             var command = new SqlCommand("SELECT * FROM Task WHERE ID LIKE '"+ID+"'", con);
@@ -103,15 +127,24 @@ namespace Task_Tracker
                 result = t;
                 
             }
+            */
 
-
-
+#endregion
             return result;
         }
         
 
         public void DeleteTask(int ID)
         {
+
+
+
+
+
+
+
+            #region DB Method
+            /*
             Console.WriteLine("DELETE Task: "+ ID);
             using (SqlConnection connection = new SqlConnection(constring))
             {
@@ -126,13 +159,21 @@ namespace Task_Tracker
                 connection.Close();
 
             }
-               
-            }
+            */
+#endregion
+        }
 
 
         public void CreateData(Task TaskToSave)
         {
+            
 
+
+
+
+
+            #region DB Method
+            /*
             string _table = WhatTable(TaskToSave);
             string _parameters = WhatParameters(TaskToSave);
 
@@ -153,9 +194,12 @@ namespace Task_Tracker
                 cmd.ExecuteNonQuery();
                 connection.Close();
             }
-            
+            */
+#endregion
         }
 
+
+#region DB Private Methods
         private string WhatParameters(Task taskToSave)
         {
             return "(Navn, TaskType, TaskStatus, LastDone, CritTime, MedTime) VALUES (@Navn, @TaskType, @TaskStatus, @LastDone, @CritTime, @Medtime)";
@@ -165,5 +209,6 @@ namespace Task_Tracker
         {
             return "Task";
         }
+#endregion
     }
 }
